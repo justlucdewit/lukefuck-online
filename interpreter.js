@@ -21,9 +21,11 @@ function interpret(char){
     switch(char){
         case '>':
             movePointerRight();
+            updatePointerIndex();
             break;
         case '<':
             movePointerLeft();
+            updatePointerIndex();
             break;
         case '!':
             debug();
@@ -39,6 +41,10 @@ function movePointerRight(){
 
 function movePointerLeft(){
     pointerPosition--;
+}
+
+function updatePointerIndex(){
+    document.getElementById("pointerIndex").innerText = "pointer index: "+pointerPosition;
 }
 
 function debug(){

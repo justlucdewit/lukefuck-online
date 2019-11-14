@@ -3,6 +3,10 @@
     margin: 0px;
 }
 
+body{
+    background-color: black;
+}
+
 #top-menu, #bottom-menu, #input{
     background-color: black;
     color: rgb(0, 255, 0);
@@ -25,7 +29,7 @@
 }
 
 #input{
-    height: 78%;
+    height: 75%;
     outline: 1px solid rgb(0, 255, 0);
     padding: 10px;
     overflow: scroll;
@@ -47,4 +51,8 @@ td{
 
 #bottom-menu{
     height: 15%;
+}
+
+#pointerIndex{
+    padding-left: 10px;
 }
