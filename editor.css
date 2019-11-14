@@ -1,0 +1,50 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+#top-menu, #bottom-menu, #input{
+    background-color: black;
+    color: rgb(0, 255, 0);
+}
+
+#top-menu{
+    height: 5%;
+    font-weight: bolder;
+    font-size: larger;
+    outline: 1px solid rgb(0, 255, 0);
+    padding-left: 10px;
+}
+
+.button{
+    color: blue;
+}
+
+.right{
+    float: right;
+}
+
+#input{
+    height: 78%;
+    outline: 1px solid rgb(0, 255, 0);
+    padding: 10px;
+    overflow: scroll;
+}
+
+table{
+    color: rgb(0, 255, 0);
+    border: 1px solid blue;
+    float: right;
+}
+
+td{
+    border: 1px solid blue;
+    padding: 2px;
+}
+
+#vars{
+}
+
+#bottom-menu{
+    height: 15%;
+}

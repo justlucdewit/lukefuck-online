@@ -1,0 +1,1 @@
+let mem_table = document.getElementById("mem_table");
