@@ -1,7 +1,7 @@
 let var_names = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
 
 let mem_table = document.getElementById("mem_table");
-let mem_table_length = 44+26;
+let mem_table_length = 34+26;
 let mem_col_index = mem_table.children[0].children[0];
 let mem_col_value = mem_table.children[0].children[1];
 

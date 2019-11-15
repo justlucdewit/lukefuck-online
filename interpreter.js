@@ -1,3 +1,37 @@
+/*
++>
+++>
++++>
+++++>
++++++>
+++++++>
++++++++>
+++++++++>
++++++++++>
+++++++++++>
++++++++++++>
+++++++++++++>
++++++++++++++>
+*/
+
+/*
+++++++++
+[
+>++++
+[
+>++
+>+++
+>+++
+>+
+<<<<-
+]
+>+>+>->>+
+[<]
+<-
+]
+!
+*/
+
 function retrieveCode(){
     return document.getElementById("input").innerText;
 }
@@ -5,27 +39,38 @@ function retrieveCode(){
 let pointerPosition = 0;
 let higherBound = 0;
 let lowerBound = 0;
-let values = [0];
+let valuesarr = [0];
+let looppoints = [];
+let output = 69420;
 
 function run(){
+    resetMem()
     pointerPosition = 0;
     higherBound = 0;
     lowerBound = 0;
-    values = [0];
+    looppoints = [];
+    valuesarr = [0];
+    if (output != 69420){
+        output.close()
+    }
+    createConsole();
 
-    console.log("running code...");
+    
+
     let code = retrieveCode();
-
-    for(const char of code){
-        interpret(char)
+    for(let i = 0; i < code.length; i++){
+        let result = interpret(code[i], i)
+        if (result == 1){
+            i = (looppoints[looppoints.length-1]);
+        }
     }
 }
 
 function stop(){
-    console.log("stopping code");
+
 }
 
-function interpret(char){
+function interpret(char, i){
     switch(char){
         case '>':
             movePointerRight();
@@ -43,25 +88,56 @@ function interpret(char){
             subtractOneFromCurrent();
             updateDebugger();
             break;
+        case '[':
+            saveloop(i);
+            break;
+        case ']':
+            updateDebugger();
+            if (breakloop()){
+                return 1;
+            }
+            break;
         case '!':
             debug();
+            break;
+        case '.':
+            printchar();
             break;
         default:
             break;
     }
+    return false;
+}
+
+function printchar(){
+    let char = String.fromCharCode(valuesarr[pointerPosition]);
+    output.document.write(char);
+}
+
+function saveloop(i){
+    looppoints.push(i);
+}
+
+function breakloop(){
+    if (valuesarr[pointerPosition]==0){
+        looppoints.pop();
+    }else{
+        return true;
+        
+    }
 }
 
 function addOneToCurrent(){
-    values[pointerPosition]++;
-    if (values[pointerPosition]==256){
-        values[pointerPosition]=0;
+    valuesarr[pointerPosition]++;
+    if (valuesarr[pointerPosition]==256){
+        valuesarr[pointerPosition]=0;
     }
 }
 
 function subtractOneFromCurrent(){
-    values[pointerPosition]--;
-    if (values[pointerPosition]==-1){
-        values[pointerPosition]=255;
+    valuesarr[pointerPosition]--;
+    if (valuesarr[pointerPosition]==-1){
+        valuesarr[pointerPosition]=255;
     }
 }
 
@@ -69,7 +145,7 @@ function movePointerRight(){
     pointerPosition++;
     if (pointerPosition > higherBound){
         higherBound = pointerPosition;
-        values[pointerPosition]=0;
+        valuesarr[pointerPosition]=0;
     }
 }
 
@@ -77,7 +153,7 @@ function movePointerLeft(){
     pointerPosition--;
     if (pointerPosition < lowerBound){
         lowerBound = pointerPosition;
-        values[pointerPosition]=0;
+        valuesarr[pointerPosition]=0;
     }
 }
 
@@ -86,17 +162,28 @@ function updateDebugger(){
     document.getElementById("stripRange").innerText = "value strip range: "+lowerBound+" - "+higherBound;
 
     let table = document.getElementById("mem_table").children[0].children[1];
+    test = table;
     let i = 0;
-    console.log(values);
-    for (const child of table.children){
-        if (i >= 26 && values[i-26]){
-            child.innerText = values[i-26];
+    for (const child of table.cells){
+        if (i >= 26 && typeof(valuesarr[i-26])!="undefined"){
+            child.innerText = valuesarr[i-26];
         }
         i++;
     }
 }
 
+function resetMem(){
+    let table = document.getElementById("mem_table").children[0].children[1];
+    for (const child of table.children){
+        child.innerText = 0;
+    }
+}
+
 function debug(){
     console.log("Pointer position: "+pointerPosition);
-    console.log("values: ");console.log(values);
+    console.log("valuesarr: ");console.log(valuesarr);
+}
+
+function createConsole(){
+    output = window.open("", "console", "width=300,height=300,scrollbars=1,resizable=1");
 }
