@@ -51,10 +51,10 @@ function run(){
     looppoints = [];
     valuesarr = [0];
     if (output != 69420){
-        output.close()
+        output.close();
     }
     createConsole();
-
+    output.document.write("<style>*{background-color:black; color: rgb(0, 255, 0);}</style>");
     
 
     let code = retrieveCode();
