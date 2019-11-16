@@ -1,35 +1,5 @@
-/*
-+>
-++>
-+++>
-++++>
-+++++>
-++++++>
-+++++++>
-++++++++>
-+++++++++>
-++++++++++>
-+++++++++++>
-++++++++++++>
-+++++++++++++>
-*/
-
-/*
-++++++++
-[
->++++
-[
->++
->+++
->+++
->+
-<<<<-
-]
->+>+>->>+
-[<]
-<-
-]
-!
+/*hello world
+++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.
 */
 
 function retrieveCode(){
@@ -103,10 +73,20 @@ function interpret(char, i){
         case '.':
             printchar();
             break;
+        case ',':
+            readchar();
+            updateDebugger();
+            break;
         default:
             break;
     }
     return false;
+}
+
+function readchar(){
+    let code = prompt("Please press a key and press enter").charCodeAt();
+    valuesarr[pointerPosition] = code;
+    console.log(code);
 }
 
 function printchar(){
