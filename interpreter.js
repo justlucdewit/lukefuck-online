@@ -103,7 +103,6 @@ function breakloop(){
         looppoints.pop();
     }else{
         return true;
-        
     }
 }
 
