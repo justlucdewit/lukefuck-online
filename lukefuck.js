@@ -19,3 +19,21 @@ for (let i = 0; i < mem_table_length; i++){
     mem_col_index.appendChild(td1);
     mem_col_value.appendChild(td2);
 }
+
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+  }
+
+function downloadFile(){
+    data = document.getElementById("input").innerText;
+    download("program.lf", data)
+}
